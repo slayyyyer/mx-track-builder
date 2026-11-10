@@ -1,0 +1,101 @@
+# Supercross-style layout on a 768 x 768 ft pad (0.75 ft heightfield resolution).
+name: Sandbox_SX
+title: SANDBOX SX
+desc: Sandbox Supercross
+seed: 771
+
+terrain:
+  dimension: 9
+  resolution: 0.75
+  base_height: 20
+  relief: 3
+  roughness: 0.1
+
+track:
+  control_points:
+    - [150, 500]        # start / finish
+    - [150, 360]
+    - [240, 270]
+    - [360, 320]
+    - [430, 220]
+    - [560, 190]
+    - [640, 300]
+    - [600, 400]
+    - [670, 480]
+    - [600, 570]
+    - [500, 640]
+    - [410, 580]
+    - [320, 650]
+    - [260, 720]
+    - [190, 720]
+    - [150, 680]
+    - [150, 640]        # run onto the start straight
+  width: 24
+  start_width: 70
+  start_taper: 100
+  start_flat: 60
+  smooth: 24
+  edge_falloff: 10
+
+obstacles:
+  - {type: berm,     at: "20%", length: 55, height: 3.4}
+  - {type: whoops,   at: "25%", count: 5, spacing: 17, height: 1.8}
+  - {type: jump,     at: "40%", height: 5.5, takeoff_angle: 25, gap: 28, landing_length: 22}
+  - {type: tabletop, at: "45%", height: 5, takeoff_angle: 22, table: 14, landing_length: 20}
+  - {type: jump,     at: "60%", height: 5.5, takeoff_angle: 25, gap: 26, landing_length: 20}
+  - {type: berm,     at: "65%", length: 60, height: 3.6}
+  - {type: whoops,   at: "70%", count: 6, spacing: 16, height: 1.7}
+  - {type: jump,     at: "80%", height: 6, takeoff_angle: 24, gap: 30, landing_length: 22}
+  - {type: berm,     at: "85%", length: 55, height: 3.2}
+  - {type: tabletop, at: "95%", height: 5, takeoff_angle: 22, table: 16, landing_length: 20}
+
+theme:
+  map:
+    size: 1024
+    background: "#171717"
+    track_colors: ["#f2f2f2"]
+    outline: "#000000"
+    outline_width: 10
+    track_width: 24
+    title: SANDBOX SX
+    title_color: "#ffd34d"
+    title_outline: "#000000"
+    title_size: 92
+    title_position: top
+    show_start: true
+    show_gates: true
+  ground:
+    size: 2048
+    base_color: "#5f5a50"
+    dirt_color: "#7c5639"
+    edge_falloff: 7
+    noise: 0.3
+    noise_scale: 90
+
+statues:
+  - name: stadium_blocks
+    model: "@Sandbox_SX/statues/stadium_block.jm"
+    texture: "@Sandbox_SX/statues/stadium_block.png"
+    shape: null
+    count: 24
+    min_distance: 20
+    max_distance: 90
+    min_spacing: 22
+    side: both
+
+billboards:
+  - texture: "@Sandbox_SX/billboards/crowd.png"
+    count: 40
+    min_distance: 28
+    max_distance: 120
+    min_spacing: 18
+    height: 34
+    aspect: 1.0
+    side: both
+
+gates:
+  start_at: 0
+  start_count: 16
+  spacing: 4
+  checkpoint_count: 14
+  checkpoint_offset: 0

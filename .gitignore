@@ -1,0 +1,6 @@
+.freebuff/
+**/__pycache__/
+*.py[cod]
+mx-track-builder/tracks/
+*.skill
+**/.mapcheck/

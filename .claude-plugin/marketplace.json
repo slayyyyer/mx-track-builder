@@ -1,0 +1,15 @@
+{
+  "name": "track-creator",
+  "description": "MX Simulator track-building tools for Claude Code and other coding agents.",
+  "owner": {
+    "name": "slayyyyer"
+  },
+  "plugins": [
+    {
+      "name": "mx-track-builder",
+      "source": "./mx-track-builder",
+      "description": "Build, regenerate and validate complete MX Simulator tracks from one YAML or JSON layout.",
+      "version": "1.0.0"
+    }
+  ]
+}

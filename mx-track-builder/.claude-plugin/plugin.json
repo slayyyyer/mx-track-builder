@@ -1,0 +1,8 @@
+{
+  "name": "mx-track-builder",
+  "version": "1.0.0",
+  "description": "Build, regenerate and validate complete MX Simulator tracks from one YAML or JSON layout.",
+  "author": {
+    "name": "slayyyyer"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "skill_name": "mx-track-builder",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need a desert national for MX Sim called Cactus Ridge, roughly a mile long, with a couple of doubles, a whoop section, rollers and a few banked turns. Use Mexican flag colours for the map ribbon with a black outline and put cactuses and rocks outside the track.",
+      "expected_output": "A track description plus a built Cactus_Ridge folder containing a 16-bit terrain.png, text terrain.hf, flag-striped RGBA map.png, dirt decal, ground tile, tileinfo/tilemap, lighting, statue entries for cacti/rocks, billboards, and timing gates with a start row and checkpoints.",
+      "files": [],
+      "assertions": [
+        "A description file (YAML or JSON) exists and contains control_points, obstacles, theme.map.track_colors with three colours, statues and billboards.",
+        "The build command exits 0 and the track folder contains terrain.hf, terrain.png, map.png, desc, decals, ground/tile.png, tileinfo, tilemap, lighting, statues, billboards and timing_gates.",
+        "terrain.hf is text with four fields and terrain.png is 16-bit greyscale whose size matches 2^(dimension+1)+1.",
+        "map.png is RGBA, power-of-two, and uses a black outline plus green/white/red stripe colours.",
+        "statues entries reference cactus and rock models and all statue positions are outside the track ribbon (distance > width/2).",
+        "timing_gates has a startinggate section with at least 2 gates and at least 3 perpendicular checkpoints with firstlap/normallap index lists.",
+        "validate_track.py reports all checks passing.",
+        "No coordinates or track images were hand-written by the agent; all outputs came from the generator scripts."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Make a supercross track for MX Sim on a 768 ft pad. Tight layout, a rhythm section with whoops and two jumps, banked corners, stadium-style dark map with white ribbon. 16 starting gates.",
+      "expected_output": "A supercross description using a 0.75 ft heightfield resolution on dimension 9, a lap around 1,800 ft, whoops/tabletop/jump/berm obstacles, dark map with white track, 16 start gates, and a built folder that validates.",
+      "files": [],
+      "assertions": [
+        "The description sets terrain.resolution so the world is about 768 ft across (dimension 9 with 0.75 ft/px).",
+        "track.width is between 20 and 26 ft and gates.start_count is 16.",
+        "The built lap length is between 1,200 and 2,200 ft.",
+        "Obstacles include at least one whoops section, one jump and one berm.",
+        "map.png uses a dark background and a white track colour.",
+        "timing_gates contains 16 starting gate lines and at least 3 checkpoints.",
+        "validate_track.py reports all checks passing."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Here's my existing track YAML. Widen the track to 30 ft, add two more timing checkpoints, and make the second jump bigger without breaking the jump spacing. Rebuild it.",
+      "expected_output": "The existing description edited in place (width, checkpoint_count, jump height/gap), the track rebuilt into its folder, and the changes reflected in the generated terrain ribbon and timing_gates rather than by hand-editing generated files.",
+      "files": [],
+      "assertions": [
+        "The description file is edited rather than terrain.png, map.png or timing_gates being patched directly.",
+        "track.width is 30 in the description and the rebuilt timing_gates checkpoint widths reflect the wider track plus margin.",
+        "checkpoint_count increased by 2 and the rebuilt timing_gates contains that many checkpoint lines.",
+        "The changed jump keeps a lip-to-landing gap consistent with its takeoff geometry (no overlap warning).",
+        "The rebuild exits 0 and validate_track.py still passes all checks.",
+        "The response reports the new lap length, obstacle summary and any warnings."
+      ]
+    }
+  ]
+}
